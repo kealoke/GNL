@@ -6,13 +6,13 @@
 /*   By: yushimom <yushimom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:16:48 by yushimom          #+#    #+#             */
-/*   Updated: 2022/12/01 14:06:01 by yushimom         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:40:10 by yushimom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strchr(const char *src, int c)
+char	*ft_strchr_b(const char *src, int c)
 {
 	while (*src != '\0')
 	{
@@ -25,7 +25,7 @@ char	*ft_strchr(const char *src, int c)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_b(const char *str)
 {
 	size_t	len;
 
@@ -35,7 +35,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr_b(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	i;
@@ -43,12 +43,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (len == 0 || ft_strlen(s) < start)
+	if (len == 0 || ft_strlen_b(s) < start)
 	{
 		substr = (char *)malloc(1);
 		return (substr);
 	}
-	sub_len = ft_strlen(s + start);
+	sub_len = ft_strlen_b(s + start);
 	if (sub_len < len)
 		len = sub_len;
 	substr = (char *)malloc(len + 1);
@@ -63,14 +63,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat_b(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	j;
 	size_t	dlen;
 	size_t	slen;
 
-	slen = ft_strlen(src);
+	slen = ft_strlen_b(src);
 	if (!dst && src && dstsize == 0)
 		return (slen);
 	if (dstsize <= 0)
@@ -78,7 +78,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	i = 0;
 	while (dst[i] != '\0')
 		i++;
-	dlen = ft_strlen(dst);
+	dlen = ft_strlen_b(dst);
 	if (dstsize <= dlen)
 		return (dstsize + slen);
 	j = 0;
@@ -92,7 +92,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dlen + slen);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_b(char *s1, char *s2)
 {
 	char	*new_s;
 	size_t	len_s1;
@@ -101,8 +101,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
+	len_s1 = ft_strlen_b(s1);
+	len_s2 = ft_strlen_b(s2);
 	new_s = (char *)malloc(len_s1 + len_s2 + 1);
 	if (!new_s)
 		return (NULL);
@@ -113,7 +113,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	new_s[i] = '\0';
-	ft_strlcat(new_s, s2, len_s1 + len_s2 + 1);
+	ft_strlcat_b(new_s, s2, len_s1 + len_s2 + 1);
 	free (s1);
 	s1 = new_s;
 	return (s1);
